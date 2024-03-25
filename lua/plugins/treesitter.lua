@@ -9,6 +9,10 @@ return {
                 ensure_installed = { 
                     "c",
                     "go",
+                    "gomod",
+                    "gosum",
+                    "gotmpl",
+                    "gowork",
                     "python",
                     "bash",
                     "lua",
@@ -29,7 +33,7 @@ return {
                 sync_install = false,
                 highlight = { 
                     enable = true, 
-                --    additional_vim_regex_highlighting =true 
+                    additional_vim_regex_highlighting =true 
                 },
                 indent = { enable = true },  
             })
