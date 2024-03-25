@@ -9,7 +9,12 @@ vim.keymap.set('i', '""', '""<left>', {noremap = true})
 vim.keymap.set('i', "''", "''<left>", {noremap = true})
 vim.keymap.set('i', '(', '()<left>', {noremap = true})
 vim.keymap.set('i', '[', '[]<left>', {noremap = true})
-vim.keymap.set('i', '<S-{>', '{}<left>', {noremap = true})
-vim.keymap.set('i', '<S-{><CR>', '{<CR><CR>}<left><up><TAB>', {noremap = true})
+if jit.os == 'OSX' then
+    vim.keymap.set('i', '{', '{}<left>', {noremap = true})
+    vim.keymap.set('i', '{<CR>', '{<CR><CR>}<up><TAB>', {noremap = true})
+else
+    vim.keymap.set('i', '<S-{>', '{}<left>', {noremap = true})
+    vim.keymap.set('i', '<S-{><CR>', '{<CR><CR>}<up><TAB>', {noremap = true})
+end
 -- vim.keymap.set('i')
 
