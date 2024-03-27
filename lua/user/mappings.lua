@@ -16,5 +16,9 @@ else
     vim.keymap.set('i', '<S-{>', '{}<left>', {noremap = true})
     vim.keymap.set('i', '<S-{><CR>', '{<CR><CR>}<up><TAB>', {noremap = true})
 end
+vim.keymap.set('n', '<C-h>', '<C-w>h', {noremap = true})
+vim.keymap.set('n', '<C-j>', '<C-w>j', {noremap = true})
+vim.keymap.set('n', '<C-k>', '<C-w>k', {noremap = true})
+vim.keymap.set('n', '<C-l>', '<C-w>l', {noremap = true})
 -- vim.keymap.set('i')
 

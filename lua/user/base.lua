@@ -13,3 +13,5 @@ vim.opt.expandtab = true
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.list = false
+
+vim.keymap.set('c', 'h', 'vert h') 
