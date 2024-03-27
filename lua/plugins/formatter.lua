@@ -34,6 +34,23 @@ return {
 							}
 						end,
 					},
+					python = {
+						require("formatter.filetypes.python").isort(),
+						-- require("formatter.filetypes.python").black,
+						function()
+							return {
+								exe = "black",
+								args = {
+									"-q",
+                                    '-l', '99',
+									"--stdin-filename",
+									util.escape_path(util.get_current_buffer_file_name()),
+									"-",
+								},
+								stdin = true,
+							}
+						end,
+					},
 
 					-- Use the special "*" filetype for defining formatter configurations on
 					-- any filetype
