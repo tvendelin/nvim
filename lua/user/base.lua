@@ -14,3 +14,5 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.list = false
 
+vim.opt.signcolumn = "yes"
+vim.opt.scrolloff = 5

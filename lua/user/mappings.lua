@@ -6,13 +6,6 @@ vim.keymap.set("n", "<leader>sv", ":source %<CR>")
 -- type <C-v>, then the key.
 -- Either the key or the code for it will show up.
 
--- Pythonic docstring
-vim.keymap.set("i", '"""<CR>', '"""<CR>"""<C-o>O', { noremap = true })
-vim.keymap.set("i", "'''<CR>", "'''<CR>'''<C-o>O", { noremap = true })
-
--- Markdown code
-vim.keymap.set("i", "```<CR>", "```<CR>```<C-o>O", { noremap = true })
-
 vim.keymap.set("i", '""', '""<left>', { noremap = true })
 vim.keymap.set("i", "''", "''<left>", { noremap = true })
 vim.keymap.set("i", "``", "``<left>", { noremap = true })

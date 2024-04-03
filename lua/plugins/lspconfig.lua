@@ -133,6 +133,8 @@ return {
 				gopls = {},
 				marksman = {},
 				jedi_language_server = {},
+		--		autotools_ls = {},
+        --        bashls = {},
 
 				-- pyright = {},
 				-- rust_analyzer = {},
