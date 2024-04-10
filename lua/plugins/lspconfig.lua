@@ -133,8 +133,19 @@ return {
 				gopls = {},
 				marksman = {},
 				jedi_language_server = {},
-		--		autotools_ls = {},
-        --        bashls = {},
+				rust_analyzer = {
+                    cmd = {
+                        "rustup", "run", "stable", "rust-analyzer",
+                    },
+					capabilities = capabilities,
+					["rust-analyzer"] = {
+						checkOnSave = {
+							command = "clippy",
+						},
+					},
+				},
+				--		autotools_ls = {},
+				--        bashls = {},
 
 				-- pyright = {},
 				-- rust_analyzer = {},

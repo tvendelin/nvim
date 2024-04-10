@@ -14,6 +14,7 @@ return {
                     "gotmpl",
                     "gowork",
                     "python",
+                    "rust",
                     "bash",
                     "lua",
                     "vim",
