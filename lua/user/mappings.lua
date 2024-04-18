@@ -26,4 +26,8 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true })
 -- vim.keymap.set('i')
 
+-- Display help in a vertical split by default
 vim.cmd(":cabbre h vert h ")
+
+-- oil.nvim file browser
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
