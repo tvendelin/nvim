@@ -132,11 +132,15 @@ return {
 				clangd = {},
 				gopls = {},
 				marksman = {},
-				jedi_language_server = {},
+				pyright = {},
+				-- jedi_language_server = {},
 				rust_analyzer = {
-                    cmd = {
-                        "rustup", "run", "stable", "rust-analyzer",
-                    },
+					cmd = {
+						"rustup",
+						"run",
+						"stable",
+						"rust-analyzer",
+					},
 					capabilities = capabilities,
 					["rust-analyzer"] = {
 						checkOnSave = {
