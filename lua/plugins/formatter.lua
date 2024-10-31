@@ -42,7 +42,8 @@ return {
 								exe = "black",
 								args = {
 									"-q",
-                                    '-l', '99',
+									"-l",
+									"99",
 									"--stdin-filename",
 									util.escape_path(util.get_current_buffer_file_name()),
 									"-",

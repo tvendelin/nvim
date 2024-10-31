@@ -16,4 +16,3 @@ require("user.base")
 require("user.autocmd")
 require("user.mappings")
 require("user.filetypes")
-
