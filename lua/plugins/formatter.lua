@@ -34,6 +34,9 @@ return {
 							}
 						end,
 					},
+					rust = {
+						require("formatter.filetypes.rust").rustfmt(),
+					},
 					python = {
 						require("formatter.filetypes.python").isort(),
 						-- require("formatter.filetypes.python").black,
