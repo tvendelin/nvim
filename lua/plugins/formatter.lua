@@ -37,6 +37,16 @@ return {
 					rust = {
 						require("formatter.filetypes.rust").rustfmt(),
 					},
+					sh = {
+					  require("formatter.filetypes.sh"),
+					    function()
+					        return {
+					            exe = "shfmt",
+					            args = {'-s'},
+                                stdin = true
+					        }
+					    end
+					},
 					python = {
 						require("formatter.filetypes.python").isort(),
 						-- require("formatter.filetypes.python").black,
