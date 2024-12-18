@@ -133,6 +133,8 @@ return {
 				--								gopls = {},
 				marksman = {},
 				pyright = {},
+				black = {},
+				isort = {},
 				bashls = {},
 				shellcheck = {},
 				shfmt = {},
