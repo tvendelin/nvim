@@ -165,8 +165,8 @@ return {
 				--
 				-- But for many setups, the LSP (`tsserver`) will work just fine
 				-- tsserver = {},
-				--
 
+                -- https://luals.github.io/wiki/settings/#diagnosticsdisable
 				lua_ls = {
 					-- cmd = {...},
 					-- filetypes = { ...},
