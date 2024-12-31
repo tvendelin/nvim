@@ -26,6 +26,7 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true })
+
 -- vim.keymap.set('i')
 
 -- Display help in a vertical split by default
@@ -33,3 +34,13 @@ vim.cmd(":cabbre h vert h ")
 
 -- oil.nvim file browser
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+-- deactivate highlight (simple version commented out but kept just in case)
+-- vim.keymap.set('n', '<S-C-l>', ':nohlsearch<CR>', { silent = true })
+vim.keymap.set("n", "<Esc>", function()
+	if vim.v.hlsearch == 1 then
+		vim.cmd("nohlsearch")
+	else
+		return "<Esc>"
+	end
+end, { expr = true, silent = true })
