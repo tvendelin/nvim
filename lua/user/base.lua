@@ -18,4 +18,4 @@ vim.opt.list = false
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 5
 
-vim.opt.mouse = "c"
+vim.opt.mouse = "a"
