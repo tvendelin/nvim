@@ -35,7 +35,8 @@ vim.cmd(":cabbre h vert h ")
 -- oil.nvim file browser
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
--- deactivate highlight (simple version commented out but kept just in case)
+-- deactivate residual highlight after search
+-- (simple version commented out but kept just in case)
 -- vim.keymap.set('n', '<S-C-l>', ':nohlsearch<CR>', { silent = true })
 vim.keymap.set("n", "<Esc>", function()
 	if vim.v.hlsearch == 1 then
@@ -44,3 +45,4 @@ vim.keymap.set("n", "<Esc>", function()
 		return "<Esc>"
 	end
 end, { expr = true, silent = true })
+vim.keymap.set('n', '<leader>o', 'zO', { desc = 'Unfold function and all inside' })

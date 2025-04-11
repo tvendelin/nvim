@@ -19,3 +19,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 5
 
 vim.opt.mouse = "a"
+
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldenable = false
