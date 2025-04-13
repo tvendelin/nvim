@@ -18,7 +18,9 @@ vim.opt.list = false
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 5
 
-vim.opt.mouse = "a"
+-- change to "a" on Mac
+-- copy-and-paste without line numbers
+vim.opt.mouse = ""
 
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'

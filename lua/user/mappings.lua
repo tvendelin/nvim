@@ -45,4 +45,9 @@ vim.keymap.set("n", "<Esc>", function()
 		return "<Esc>"
 	end
 end, { expr = true, silent = true })
-vim.keymap.set('n', '<leader>o', 'zO', { desc = 'Unfold function and all inside' })
+
+vim.keymap.set("n", "<leader>o", "zO", { desc = "Unfold function and all inside" })
+
+vim.keymap.set("n", "<leader>eh", function()
+	vim.diagnostic.open_float()
+end, { desc = "Open diagnostic float" })
