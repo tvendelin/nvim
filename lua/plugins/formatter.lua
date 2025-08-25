@@ -38,14 +38,14 @@ return {
 						require("formatter.filetypes.rust").rustfmt(),
 					},
 					sh = {
-					  require("formatter.filetypes.sh"),
-					    function()
-					        return {
-					            exe = "shfmt",
-					            args = {'-s'},
-                                stdin = true
-					        }
-					    end
+						require("formatter.filetypes.sh"),
+						function()
+							return {
+								exe = "shfmt",
+								args = { "-s" },
+								stdin = true,
+							}
+						end,
 					},
 					python = {
 						require("formatter.filetypes.python").isort(),
@@ -61,6 +61,15 @@ return {
 									util.escape_path(util.get_current_buffer_file_name()),
 									"-",
 								},
+								stdin = true,
+							}
+						end,
+					},
+					sql = {
+						function()
+							return {
+								exe = "sleek", -- make sure this is installed: npm i -g sql-formatter
+								args = {},
 								stdin = true,
 							}
 						end,
