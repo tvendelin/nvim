@@ -28,6 +28,7 @@ return {
 					"html",
 					"dockerfile",
 					"gitignore",
+                    "sql",
 				},
 				auto_install = true,
 				ignore_install = {},
