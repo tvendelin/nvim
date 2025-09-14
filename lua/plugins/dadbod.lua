@@ -17,6 +17,13 @@ return {
 	end,
 	config = function()
 		vim.g.db_ui_save_location = "dadbod"
+		vim.g.db_ui_table_helpers = {
+			duckdb = {
+				List = 'SELECT * FROM "{table}" LIMIT 10;',
+				Count = 'SELECT COUNT(*) FROM "{table}";',
+                Describe = 'DESCRIBE "{table}"'
+			},
+		}
 
 		-- Set up omnifunc for SQL files
 		vim.api.nvim_create_autocmd("FileType", {
