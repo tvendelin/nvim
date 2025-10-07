@@ -28,7 +28,7 @@ return {
 					"html",
 					"dockerfile",
 					"gitignore",
-                    "sql",
+					"sql",
 				},
 				auto_install = true,
 				ignore_install = {},
@@ -37,10 +37,10 @@ return {
 					enable = true,
 					--                    additional_vim_regex_highlighting =true
 				},
-                indent = {
-                    enable = true,
-                    disable = {"python",}
-                }
+				indent = {
+					enable = true,
+					disable = { "python", "yaml" },
+				},
 			})
 		end,
 	},
