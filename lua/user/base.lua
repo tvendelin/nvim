@@ -1,6 +1,13 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
+-- Disable remote plugin providers (only needed for plugins *written in* these
+-- languages, not for external tools like LSP servers that happen to use them)
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -22,6 +29,6 @@ vim.opt.scrolloff = 5
 -- copy-and-paste without line numbers
 vim.opt.mouse = ""
 
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldenable = false

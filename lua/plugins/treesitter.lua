@@ -1,11 +1,10 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		tag = "v0.10.0",
 		build = ":TSUpdate",
 		config = function()
-			local configs = require("nvim-treesitter.configs")
-
-			configs.setup({
+			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"c",
 					"go",
@@ -31,11 +30,8 @@ return {
 					"sql",
 				},
 				auto_install = true,
-				ignore_install = {},
-				sync_install = false,
 				highlight = {
 					enable = true,
-					--                    additional_vim_regex_highlighting =true
 				},
 				indent = {
 					enable = true,
