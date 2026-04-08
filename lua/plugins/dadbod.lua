@@ -21,7 +21,7 @@ return {
 			duckdb = {
 				List = 'SELECT * FROM "{table}" LIMIT 10;',
 				Count = 'SELECT COUNT(*) FROM "{table}";',
-                Describe = 'DESCRIBE "{table}"'
+                Describe = "PRAGMA table_info('{table}');"
 			},
 		}
 
