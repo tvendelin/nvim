@@ -30,4 +30,5 @@
 ## Gotchas
 
 - `after/ftplugin/` files use `TSDisable` commands — these only work with nvim-treesitter v0.10.0. If treesitter is ever updated past v0.10.0, replace with `vim.treesitter.stop()` and `vim.bo.indentexpr = ""`.
+- On Neovim 0.11+, the built-in runtime auto-starts treesitter highlighting via a `FileType` handler whenever a parser is installed. nvim-treesitter's `highlight.disable` does **not** prevent this. To actually stop highlighting for a filetype, call `vim.treesitter.stop()` in `after/ftplugin/<ft>.lua` (see `markdown.lua`, which works around a v0.10.0 markdown_inline injection query that crashes on Neovim 0.12 with `attempt to call method 'range' (a nil value)`).
 - MacPorts `lua51-luarocks` installs only library files, no `luarocks` binary.
