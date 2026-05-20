@@ -43,6 +43,28 @@ return {
 			luasnip.config.setup({})
 			require("luasnip.loaders.from_snipmate").lazy_load()
 
+			local compare = require("cmp.config.compare")
+			-- Float function-argument completions (e.g. pyright's `name=`)
+			-- above generic in-scope names. LSPs flag kwargs either by
+			-- ending the label with `=` or via `preselect = true`.
+			local function kwarg_priority(e1, e2)
+				local function is_kwarg(e)
+					local item = e:get_completion_item()
+					if item.preselect then
+						return true
+					end
+					local label = item.label or ""
+					return label:sub(-1) == "="
+				end
+				local k1, k2 = is_kwarg(e1), is_kwarg(e2)
+				if k1 and not k2 then
+					return true
+				end
+				if k2 and not k1 then
+					return false
+				end
+			end
+
 			cmp.setup({
 				snippet = {
 					expand = function(args)
@@ -50,6 +72,20 @@ return {
 					end,
 				},
 				completion = { completeopt = "menu,menuone,noinsert" },
+				sorting = {
+					priority_weight = 2,
+					comparators = {
+						kwarg_priority,
+						compare.offset,
+						compare.exact,
+						compare.score,
+						compare.recently_used,
+						compare.locality,
+						compare.kind,
+						compare.length,
+						compare.order,
+					},
+				},
 
 				-- For an understanding of why these mappings were
 				-- chosen, you will need to read `:help ins-completion`
