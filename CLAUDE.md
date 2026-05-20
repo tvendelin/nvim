@@ -11,7 +11,7 @@
 ## Key decisions
 
 - **Plugin manager:** lazy.nvim with `rocks = { enabled = false }` (no luarocks binary available).
-- **nvim-treesitter:** Pinned to `tag = "v0.10.0"`. The `main` branch dropped the `configs` module and has broken async parser installation. The v0.10.0 tag retains `ensure_installed`, `TSDisable`, and the old `configs.setup()` API.
+- **nvim-treesitter:** Tracks `branch = "main"`. The legacy `configs.setup()` module is gone — install parsers with `require('nvim-treesitter').install({...})`, requires `tree-sitter` CLI at install/update time (`port install tree-sitter-cli`). Highlight and indent are both opt-in per filetype: a `FileType` autocmd in `lua/plugins/treesitter.lua` calls `vim.treesitter.start()` and sets `vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"`. Neovim's own runtime auto-starts highlight only for the few bundled filetypes (`lua`, `markdown`, `help`, `checkhealth`, `query`) via files in `$VIMRUNTIME/ftplugin/`.
 - **Telescope:** Uses `branch = "master"` (not `0.1.x`) to avoid deprecated `vim.lsp.util.jump_to_location` on Neovim 0.11+.
 - **Leader key:** `,` (both leader and localleader).
 - **Remote plugin providers:** All disabled (node/perl/python/ruby) — no plugins need them. LSP servers are external processes managed by Mason, unrelated to providers.
@@ -29,6 +29,6 @@
 
 ## Gotchas
 
-- `after/ftplugin/` files use `TSDisable` commands — these only work with nvim-treesitter v0.10.0. If treesitter is ever updated past v0.10.0, replace with `vim.treesitter.stop()` and `vim.bo.indentexpr = ""`.
-- On Neovim 0.11+, the built-in runtime auto-starts treesitter highlighting via a `FileType` handler whenever a parser is installed. nvim-treesitter's `highlight.disable` does **not** prevent this. To actually stop highlighting for a filetype, call `vim.treesitter.stop()` in `after/ftplugin/<ft>.lua` (see `markdown.lua`, which works around a v0.10.0 markdown_inline injection query that crashes on Neovim 0.12 with `attempt to call method 'range' (a nil value)`).
+- For the bundled filetypes (`lua`, `markdown`, `help`, `checkhealth`, `query`), Neovim's own `runtime/ftplugin/<ft>.lua` calls `vim.treesitter.start()`. To disable highlight for one of those, call `vim.treesitter.stop()` in `after/ftplugin/<ft>.lua` (see `markdown.lua`). For other filetypes, highlight is only on if `lua/plugins/treesitter.lua` lists them in `highlight_filetypes` — to disable, omit them (or stop them via after/ftplugin).
+- Indent on the `main` branch is per-buffer: enabled by setting `indentexpr` in a `FileType` autocmd, disabled by `vim.bo.indentexpr = ""` in `after/ftplugin/<ft>.lua`.
 - MacPorts `lua51-luarocks` installs only library files, no `luarocks` binary.

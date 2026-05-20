@@ -1,1 +1,1 @@
-vim.cmd('TSDisable highlight')
+vim.treesitter.stop()
