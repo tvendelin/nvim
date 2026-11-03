@@ -33,7 +33,7 @@ return {
 			--    That is to say, every time a new file is opened that is associated with
 			--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
 			--    function will be executed to configure the current buffer
-            vim.lsp.log.set_level("error")
+			vim.lsp.log.set_level("error")
 			require("vim.lsp.log").set_format_func(vim.inspect)
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
@@ -130,7 +130,7 @@ return {
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
 				clangd = {},
-				--								gopls = {},
+				gopls = {},
 				marksman = {},
 				pyright = {},
 				--				black = {},

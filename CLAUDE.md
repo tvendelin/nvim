@@ -25,7 +25,8 @@
 ## LSP / Mason
 
 - Mason installs LSP servers to `~/.local/share/nvim/mason/bin/`.
-- Configured servers: bashls, clangd, lua_ls, marksman, pyright, rust_analyzer, stylua.
+- Configured servers: `bashls`, `clangd`, `gopls`, `lua_ls`, `marksman`, `pyright`, `rust_analyzer`, `stylua`.
+- Go: `gopls` runs through `nvim-lspconfig` like the other servers, so Go buffers get the same `LspAttach` mappings (`gd`, `gr`, `K`, ...). `vim-go` stays for `goimports` on save and its build/test commands, with `go_gopls_enabled = 0` so it doesn't start a second `gopls` of its own. Its gopls-backed commands (`:GoDef`, `:GoReferrers`, `:GoImplements`, ...) are therefore off; the LSP mappings replace them.
 
 ## Gotchas
 
