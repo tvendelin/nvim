@@ -65,6 +65,29 @@ return {
 				end
 			end
 
+			-- Push underscore-prefixed names (`_private`, `__dunder__`)
+			-- below plain ones. Two leading underscores rank below one,
+			-- so dunders end up last.
+			local function underscore_rank(label)
+				if label:sub(1, 2) == "__" then
+					return 2
+				end
+				if label:sub(1, 1) == "_" then
+					return 1
+				end
+				return 0
+			end
+			local function underscore_priority(e1, e2)
+				local r1 = underscore_rank(e1:get_completion_item().label or "")
+				local r2 = underscore_rank(e2:get_completion_item().label or "")
+				if r1 < r2 then
+					return true
+				end
+				if r1 > r2 then
+					return false
+				end
+			end
+
 			cmp.setup({
 				snippet = {
 					expand = function(args)
@@ -76,6 +99,7 @@ return {
 					priority_weight = 2,
 					comparators = {
 						kwarg_priority,
+						underscore_priority,
 						compare.offset,
 						compare.exact,
 						compare.score,
