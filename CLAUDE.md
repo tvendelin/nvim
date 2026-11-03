@@ -24,8 +24,11 @@
 
 ## LSP / Mason
 
-- Mason installs LSP servers to `~/.local/share/nvim/mason/bin/`.
-- Configured servers: `bashls`, `clangd`, `gopls`, `lua_ls`, `marksman`, `pyright`, `rust_analyzer`, `stylua`.
+- `mason.nvim` installs servers and tools to `~/.local/share/nvim/mason/bin/`: the keys of the `servers` table in `lua/plugins/lspconfig.lua`, plus `shellcheck`, `shfmt` and `stylua`.
+- Each `servers` entry is applied with `vim.lsp.config(name, entry)`, and the `nvim-cmp` capabilities reach every server through `vim.lsp.config("*", ...)`. `mason-lspconfig` then calls `vim.lsp.enable()` for every server Mason has installed, so `nvim-lspconfig`'s `lsp/<name>.lua` defaults are merged with those entries.
+- Enabled servers: `bashls`, `clangd`, `gopls`, `lua_ls`, `marksman`, `pyright`, `rust_analyzer`, `stylua`.
+- Lua: `lazydev.nvim` adds the Neovim runtime and plugin APIs to `lua_ls`.
+- Rust: `rust_analyzer` runs Mason's `rust-analyzer`, with `clippy` as its check command.
 - Go: `gopls` runs through `nvim-lspconfig` like the other servers, so Go buffers get the same `LspAttach` mappings (`gd`, `gr`, `K`, ...). `vim-go` stays for `goimports` on save and its build/test commands, with `go_gopls_enabled = 0` so it doesn't start a second `gopls` of its own. Its gopls-backed commands (`:GoDef`, `:GoReferrers`, `:GoImplements`, ...) are therefore off; the LSP mappings replace them.
 
 ## Gotchas
@@ -33,3 +36,4 @@
 - For the bundled filetypes (`lua`, `markdown`, `help`, `checkhealth`, `query`), Neovim's own `runtime/ftplugin/<ft>.lua` calls `vim.treesitter.start()`. To disable highlight for one of those, call `vim.treesitter.stop()` in `after/ftplugin/<ft>.lua` (see `markdown.lua`). For other filetypes, highlight is only on if `lua/plugins/treesitter.lua` lists them in `highlight_filetypes` — to disable, omit them (or stop them via after/ftplugin).
 - Indent on the `main` branch is per-buffer: enabled by setting `indentexpr` in a `FileType` autocmd, disabled by `vim.bo.indentexpr = ""` in `after/ftplugin/<ft>.lua`.
 - MacPorts `lua51-luarocks` installs only library files, no `luarocks` binary.
+- `mason-lspconfig` v2 has no `handlers` option and silently ignores one, and nothing calls the legacy `require("lspconfig")[name].setup()`. Server settings must go through `vim.lsp.config()`; plugins that hook the legacy path, such as `neodev.nvim`, do nothing.
